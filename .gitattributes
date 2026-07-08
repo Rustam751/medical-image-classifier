@@ -1,0 +1,15 @@
+# Normalize line endings: treat text as LF in the repo, auto-convert on checkout.
+* text=auto eol=lf
+
+# Explicitly mark binary assets so Git does not attempt line-ending conversion
+# or textual diffs on them.
+*.pt binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.bmp binary
+*.tif binary
+*.tiff binary
+*.pdf binary
+*.docx binary
+*.ipynb binary

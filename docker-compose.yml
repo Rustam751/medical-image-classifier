@@ -1,0 +1,17 @@
+# Convenience wrapper for running the API locally with Docker.
+#   docker compose up --build
+# The API is then available at http://localhost:8000 (docs at /docs).
+
+services:
+  api:
+    build: .
+    image: medical-image-classifier-api:latest
+    ports:
+      - "8000:8000"
+    environment:
+      MIC_API_LOG_LEVEL: INFO
+    # Mount a host models directory to serve a different checkpoint without
+    # rebuilding the image (uncomment and point at your own model):
+    # volumes:
+    #   - ./models:/app/models:ro
+    restart: unless-stopped

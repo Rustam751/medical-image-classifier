@@ -1,0 +1,32 @@
+{
+  "accuracy": 0.9407407407407408,
+  "macro_avg": {
+    "precision": 0.941167373630258,
+    "recall": 0.9407407407407408,
+    "f1": 0.9399245415749542
+  },
+  "per_class": {
+    "Cognitively Normal": {
+      "precision": 0.9375,
+      "recall": 1.0,
+      "f1": 0.967741935483871,
+      "support": 45
+    },
+    "Mild Cognitive Impairment": {
+      "precision": 0.9512195121951219,
+      "recall": 0.8666666666666667,
+      "f1": 0.9069767441860465,
+      "support": 45
+    },
+    "Alzheimer's Disease": {
+      "precision": 0.9347826086956522,
+      "recall": 0.9555555555555556,
+      "f1": 0.945054945054945,
+      "support": 45
+    }
+  },
+  "n_samples": 135,
+  "dataset": "synthetic",
+  "note": "Synthetic phantom dataset. Metrics demonstrate the pipeline, not clinical validity.",
+  "best_val_loss": 0.2931
+}

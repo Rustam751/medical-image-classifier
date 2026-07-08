@@ -1,0 +1,15 @@
+# Runtime dependencies for the classifier service.
+# CPU-only PyTorch keeps the image small and GPU-free for deployment.
+# Install the CPU wheels with:
+#   pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
+
+torch==2.5.1
+numpy==1.26.4
+pillow==10.4.0
+scikit-learn==1.6.0
+matplotlib==3.9.2
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+python-multipart==0.0.20
+pydantic==2.10.4
+pyyaml==6.0.2
