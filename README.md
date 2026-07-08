@@ -13,6 +13,7 @@ CI, and explainability.
 > decision-making. Every prediction response repeats this disclaimer.
 
 <p align="left">
+  <a href="https://github.com/Rustam751/medical-image-classifier/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/Rustam751/medical-image-classifier/actions/workflows/ci.yml/badge.svg"></a>
   <img alt="Python" src="https://img.shields.io/badge/python-3.10%2B-blue">
   <img alt="PyTorch" src="https://img.shields.io/badge/PyTorch-2.5-ee4c2c">
   <img alt="FastAPI" src="https://img.shields.io/badge/FastAPI-0.115-009688">
@@ -20,6 +21,10 @@ CI, and explainability.
   <img alt="Tests" src="https://img.shields.io/badge/tests-20%20passing-brightgreen">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-green">
 </p>
+
+![Demo interface](docs/images/demo_preview.png)
+
+<p align="center"><em>The demo takes an image and returns the predicted class, a probability breakdown, and a Grad-CAM explanation of where the model looked. Output shown is from the committed model on a bundled sample.</em></p>
 
 ---
 
@@ -32,6 +37,7 @@ CI, and explainability.
 - [Model approach](#model-approach)
 - [Dataset](#dataset)
 - [Quickstart](#quickstart)
+- [Demo interface](#demo-interface)
 - [Using the API](#using-the-api)
 - [Evaluation results](#evaluation-results)
 - [Explainability (Grad-CAM)](#explainability-grad-cam)
@@ -187,11 +193,21 @@ docker compose up --build
 # API on http://localhost:8000  (docs at /docs)
 ```
 
-### Streamlit demo
+## Demo interface
+
+A lightweight Streamlit app provides a visual interface: upload an image and see
+the predicted class, a probability bar chart, and the Grad-CAM explanation (the
+panel shown at the top of this README is this app's output). It loads the model
+in-process, so the API does not need to be running.
 
 ```bash
-make demo
-#   → streamlit run app/streamlit_app.py
+python -m streamlit run app/streamlit_app.py   # opens http://localhost:8501
+```
+
+The static preview above can be regenerated from the committed model with:
+
+```bash
+python scripts/make_demo_preview.py
 ```
 
 ## Using the API
