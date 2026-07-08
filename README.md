@@ -147,26 +147,38 @@ layout. To train a real model, arrange images as below and point
 
 ## Quickstart
 
-Requires Python 3.10+. (Commands use `make`; the underlying commands are shown
-for Windows users without `make`.)
+Requires Python 3.10+. These commands work identically on Linux, macOS, and
+Windows (PowerShell or CMD) — no `PYTHONPATH` or `make` required.
 
 ```bash
-# 1. Install dependencies (CPU PyTorch)
+# 1. Install dependencies (CPU PyTorch) and the package itself (editable)
 pip install -r requirements-dev.txt --extra-index-url https://download.pytorch.org/whl/cpu
+pip install -e .
 
-# 2. (Optional) train — a trained checkpoint is already committed, but you can
-#    reproduce it. This generates the synthetic data and writes reports/.
-make train
-#   → python -m medical_classifier.training.train   (set PYTHONPATH=src)
+# 2. Run the API — a trained checkpoint is already committed, so this works now
+uvicorn medical_classifier.api.main:app --port 8000
 
-# 3. Run the API
-make serve
-#   → uvicorn medical_classifier.api.main:app --host 0.0.0.0 --port 8000
-#   (set PYTHONPATH=src)
-
-# 4. Open the interactive docs
+# 3. Open the interactive docs
 #    http://localhost:8000/docs
 ```
+
+Then, in another terminal, send an image:
+
+```bash
+curl -X POST http://localhost:8000/predict -F "file=@samples/sample_ad_1.png"
+```
+
+To reproduce training (regenerates the synthetic data and writes `reports/`):
+
+```bash
+python -m medical_classifier.training.train
+```
+
+> **Tip.** `pip install -e .` installs `medical_classifier` into your
+> environment, so `uvicorn`, `pytest`, and `python -m ...` all find it without
+> setting `PYTHONPATH`. If you skip it, prefix commands with `PYTHONPATH=src`
+> (Linux/macOS) or `$env:PYTHONPATH="src"` (PowerShell). The `make` targets set
+> this for you.
 
 ### With Docker
 

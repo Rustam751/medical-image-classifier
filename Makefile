@@ -10,11 +10,13 @@ help:  ## Show this help
 	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | \
 		awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-16s\033[0m %s\n", $$1, $$2}'
 
-install:  ## Install runtime dependencies (CPU PyTorch)
+install:  ## Install runtime dependencies (CPU PyTorch) + the package
 	$(PYTHON) -m pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cpu
+	$(PYTHON) -m pip install -e . --no-deps
 
-install-dev:  ## Install runtime + dev dependencies
+install-dev:  ## Install runtime + dev dependencies + the package (editable)
 	$(PYTHON) -m pip install -r requirements-dev.txt --extra-index-url https://download.pytorch.org/whl/cpu
+	$(PYTHON) -m pip install -e . --no-deps
 
 data:  ## Generate the synthetic dataset
 	$(PYTHON) scripts/generate_synthetic_data.py
