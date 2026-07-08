@@ -16,7 +16,10 @@ env/
 
 # The synthetic dataset is regenerated deterministically by a script, so it is
 # not committed. Run `make data` (or `python scripts/generate_synthetic_data.py`).
-data/
+# NOTE: the leading slash anchors this to the repo root ONLY. A bare `data/`
+# would also match src/medical_classifier/data/ (the source package) and wrongly
+# exclude it from the repo.
+/data/
 
 # OS / editor cruft
 .DS_Store
